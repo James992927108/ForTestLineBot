@@ -9,13 +9,11 @@ namespace WebApplication1.Controllers
 {
     public class LineChatController : ApiController
     {
+        public static int debug_mode;
         [HttpPost]
         public IHttpActionResult POST()
         {
             string ChannelAccessToken = "XYaRE0qBH4/2oKlLnvo37e20XZDV6Oz104ynfWt/jwIKC1kQC+MN/Ryvj8jVo0W/Gnej675fXB6jrFQkMt5xz/nx1aGFsLlFi8igSkNttLYJdG4U1+LSl9dcXhPizM3XjD3dNFNjDKJCzYSaHmdbJQdB04t89/1O/w1cDnyilFU=";
-
-
-            //isRock.LineBot.Utility.PushMessage(UserId, 要傳送的訊息, AccessToken);
             try
             {
                 //取得 http Post RawData(should be JSON)
@@ -33,20 +31,20 @@ namespace WebApplication1.Controllers
 
                 string data;
 
-                string Message;
+                string Message_info, Message;
 
-                //timestamp = ReceivedMessage.events[0].timestamp.ToString();
+                timestamp = ReceivedMessage.events[0].timestamp.ToString();
                 ReplyToken = ReceivedMessage.events[0].replyToken;
-                //type = ReceivedMessage.events[0].type.ToString();
+                type = ReceivedMessage.events[0].type.ToString();
 
                 //groupId = ReceivedMessage.events[0].source.groupId.ToString();
                 //roomId = ReceivedMessage.events[0].source.roomId.ToString();
                 userId = ReceivedMessage.events[0].source.userId;
                 //souretype = ReceivedMessage.events[0].source.type.ToString();
 
-                //messagetype = ReceivedMessage.events[0].message.type.ToString();
-                messageid = ReceivedMessage.events[0].message.id.ToString();
                 text = ReceivedMessage.events[0].message.text;
+                messagetype = ReceivedMessage.events[0].message.type.ToString();
+                messageid = ReceivedMessage.events[0].message.id.ToString();
                 //title = ReceivedMessage.events[0].message.title.ToString();
                 //address = ReceivedMessage.events[0].message.address.ToString();
                 //latitude = ReceivedMessage.events[0].message.latitude.ToString();
@@ -55,15 +53,22 @@ namespace WebApplication1.Controllers
                 //stickerId = ReceivedMessage.events[0].message.stickerId;
                 //data = ReceivedMessage.events[0].postback.data.ToString();
 
-                Message = "你說了 : " + text + "\r\nmessageid : " + messageid + "\r\nuserId : " + userId + "\r\nTime : " + DateTime.Now.ToString();
-
-                if (text == "test")
-                {
-                    isRock.LineBot.Utility.ReplyMessage(ReplyToken, "test success\r\n" + Message, ChannelAccessToken);
-                }
-                //回覆用戶
-                isRock.LineBot.Utility.ReplyMessage(ReplyToken, Message, ChannelAccessToken);
+                Message_info = "你說了 : " + text + "\r\nmessagetype : " + messagetype + "\r\nmessageid : " + messageid 
+                    + "\r\nuserId : " + userId
+                    + "\r\ntimestamp : " + timestamp + "\r\ntype : " + type 
+                    + "\r\nTime : " + DateTime.Now.ToString();
+                Message = "你說了 : " + text;
                 
+                if (text == "info" || debug_mode == 1)
+                {
+                    debug_mode = 1;
+                    isRock.LineBot.Utility.ReplyMessage(ReplyToken, "Detial_Info\r\n" +  Message_info, ChannelAccessToken);
+                }
+                if (text == "back" || debug_mode == 0)
+                {
+                    debug_mode = 0;
+                    isRock.LineBot.Utility.ReplyMessage(ReplyToken, Message, ChannelAccessToken);
+                }
 
                 //回覆API OK
                 return Ok();

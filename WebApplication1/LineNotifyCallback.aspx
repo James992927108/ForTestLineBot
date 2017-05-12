@@ -11,8 +11,7 @@
     <form id="form1" runat="server">
     <div>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="u r button" OnClick="Button1_Click" />
-        <h2>ForTestPublic</h2>
+        <asp:Button ID="Button1" runat="server" Text="LineNotifyCallBackButton" OnClick="Button1_Click" />
     </div>
     </form>
 </body>

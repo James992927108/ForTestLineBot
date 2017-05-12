@@ -15,13 +15,13 @@ namespace WebApplication1
             string code = Request.QueryString["code"].ToString();
             if (!string.IsNullOrEmpty(code) && string.IsNullOrEmpty(this.TextBox1.Text))
             {
-                //用code換Token
+                //用code換Token//2Hpyf9miqUhdSOGs31DQeR
                 var ret = isRock.LineNotify.Utility.GetToeknFromCode(
-                    code, "FkAGRhqEzcte61s2PWjP8b", //ClientID一定要100%對
-                    "5c3d2cc6135ad2f505df70a507e21cb9", //ClientSecret 一定要100%對
+                    code, "xJ1U6e9jRyh2xYDOxdleDc", //ClientID一定要100%對
+                    "dAO6BiSIkeQgzCgvEm1e9vQG5KmgsmKeOplEeIT6Qta", //ClientSecret 一定要100%對
                     "http://localhost:43970/LineNotifyCallback.aspx" //Callback url一定要100%對
                     );
-                this.TextBox1.Text = ret.access_token;
+                this.TextBox1.Text = ret.access_token;//Ilax9h98OElw3TdIDVzUJMwEl3okHjTtvrAWKJH0amI
             }
         }
 
