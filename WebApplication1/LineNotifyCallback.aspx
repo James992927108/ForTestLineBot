@@ -13,6 +13,10 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Text="LineNotifyCallBackButton" OnClick="Button1_Click" />
     </div>
+    <div>
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:Button ID="Button2" runat="server" Text="SendMessage" OnClick="Button2_Click" />
+    </div>
     </form>
 </body>
 </html>

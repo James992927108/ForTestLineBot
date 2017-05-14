@@ -7,7 +7,7 @@
             var URL = 'https://notify-bot.line.me/oauth/authorize?';
             URL += 'response_type=code';
             URL += '&client_id=xJ1U6e9jRyh2xYDOxdleDc';
-            URL += '&redirect_uri=http://localhost:43970/LineNotifyCallback.aspx';
+            URL += '&redirect_uri=https://fortestlinebot.azurewebsites.net/LineNotifyCallback.aspx';  
             URL += '&scope=notify';
             URL += '&state=abcde';
             window.location.href = URL;
@@ -18,3 +18,5 @@
     <button onclick="Auth();">點選這裡連結到LineNotify</button>
 </body>
 </html>
+
+<!--http://localhost:43970/LineNotifyCallback.aspx-->
